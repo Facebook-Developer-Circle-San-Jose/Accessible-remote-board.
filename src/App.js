@@ -115,7 +115,7 @@ class EditBoard extends React.Component {
 				Enter some content
 			</label>
 			<textarea id="input-content" onChange={this.handleContentChange} defaultValue={this.state.content}/>
-			<button onClick={()=> this.props.onDone(new BoardStorage(this.state.title, this.state.content))}>Done!</button>
+			<button onClick={()=> this.props.onDone(new BoardStorage(this.state.title, textToBoardData(this.state.content)))}>Done!</button>
 			<button onClick={this.props.onCancel}>Cancel</button>
 		</div>);
 	}
