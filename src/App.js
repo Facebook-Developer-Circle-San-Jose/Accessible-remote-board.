@@ -1,8 +1,12 @@
 import React from 'react';
+import firebase from 'firebase';
 import logo from './logo.svg';
 import './App.css';
 import {element, textToBoardData, screenTest, parsedText} from './customFormat';
 import {BoardStorage, envStorage} from './sharedStorage';
+import {firebaseConfig} from './firebaseConfig';
+firebase.initializeApp (firebaseConfig);
+var db = firebase.database();
 
 class Section extends React.Component {
 	constructor(props){
@@ -62,7 +66,8 @@ class Board extends React.Component {
 	}
 
 	setRefFocus(key) {
-		this.childrenRefs[key] && this.childrenRefs[key].current.focus()
+		this.childrenRefs[key] && this.childrenRefs[key].current.focus();
+		envStorage.boards[envStorage.currentBoard].lastFocusId = key;
 	}
 	
 	setLastFocus() {	
@@ -132,22 +137,58 @@ class MainBoard extends React.Component {
 		this.state = {currentBoard: 0, editing:false, editCurrent:false};
 	}
 
+	componentDidMount () {
+		this.listenEvents();
+	}
+
+	listenEvents() {
+		db.ref('lastFocusId').on('value', e => {
+			let val = e.val();
+			console.log("ultimo focus", val);
+			if (val){
+				this.refBoard.current.setRefFocus(val);
+				envStorage.lastFocusId = val;
+			}
+		});
+
+		db.ref('lastBoardId').on('value', e => {
+			let val = e.val();
+			console.log("ultimo lastBoardId", val, typeof val);
+			if (typeof val == "number"){
+				this.changeBoard(val, true);
+				envStorage.lastBoardId = val;
+			}
+		});
+
+		db.ref('boards').endAt().limitToLast(1).on('child_added', e => {
+			let val = e.val();
+			console.log("ultimo boardData", val);
+			if (val){
+
+			}
+		});
+
+	}
+
 	handleClickBoard(e) {
-		envStorage.boards[envStorage.currentBoard].lastFocusId = e.target.dataset.focusid;
+		var id = e.target.dataset.focusid;
+		if (!id) return;
+		envStorage.boards[envStorage.currentBoard].lastFocusId = id;
+		db.ref("lastFocusId").set(id);
 	}
 
 	addBoard(boardData) {
-		envStorage.boards.push(boardData);
+		if (!boardData.id) boardData.id = ++envStorage.id;
+		envStorage.boards[boardData.id] = boardData;
+		this.changeBoard(boardData.id);
+		return boardData;
 	}
 
-	updateBoard(boardData) {
-		envStorage.boards[envStorage.currentBoard] = boardData;
-	}
-
-	changeBoard(newCur) {
-		if (newCur >= 0 && newCur < envStorage.boards.length) {
+	changeBoard(newCur, external) {
+		if (envStorage.boards.hasOwnProperty(newCur)) {
 			envStorage.currentBoard = newCur;
 			this.setState({currentBoard: newCur});
+			if (!external) db.ref("lastBoardId").set(newCur);
 		}
 	}
 
@@ -179,18 +220,24 @@ class MainBoard extends React.Component {
 			onClick={this.handleClickBoard}
 			boardData={envStorage.boards[envStorage.currentBoard]}
 			ref={this.refBoard}/>
-			<button onClick={this.handleClickPrior}>previous screen</button>
-			<button onClick={this.handleClickNext}>Next screen</button>
-			<button onClick={e=> this.setState({editing:true})}>Create screen</button>
+			<button onClick={this.handleClickPrior}>previous board</button>
+			<button onClick={this.handleClickNext}>Next board</button>
+			<button onClick={e=> this.setState({editing:true})}>New board</button>
 		</div>);
 	}
 }
 
+export default class App extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {user: null}
+		
+	}
 
-function App() {
-	return (<div className="App">
-		<MainBoard/>
-	</div>);
+	render () {
+		return (<div className="App">
+			<MainBoard/>
+		</div>);
+	}
 }
 
-export default App;
