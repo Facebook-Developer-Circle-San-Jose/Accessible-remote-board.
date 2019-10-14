@@ -142,6 +142,14 @@ class MainBoard extends React.Component {
 	}
 
 	listenEvents() {
+		db.ref('boards').endAt().limitToLast(1).on('child_added', e => {
+			let val = e.val();
+			console.log("ultimo boardData", JSON.parse(val));
+			if (val){
+				envStorage.boards.push(JSON.parse(val));
+			}
+		});
+		
 		db.ref('lastFocusId').on('value', e => {
 			let val = e.val();
 			console.log("ultimo focus", val);
@@ -159,15 +167,6 @@ class MainBoard extends React.Component {
 				envStorage.lastBoardId = val;
 			}
 		});
-
-		db.ref('boards').endAt().limitToLast(1).on('child_added', e => {
-			let val = e.val();
-			console.log("ultimo boardData", val);
-			if (val){
-
-			}
-		});
-
 	}
 
 	handleClickBoard(e) {
@@ -177,15 +176,8 @@ class MainBoard extends React.Component {
 		db.ref("lastFocusId").set(id);
 	}
 
-	addBoard(boardData) {
-		if (!boardData.id) boardData.id = ++envStorage.id;
-		envStorage.boards[boardData.id] = boardData;
-		this.changeBoard(boardData.id);
-		return boardData;
-	}
-
 	changeBoard(newCur, external) {
-		if (envStorage.boards.hasOwnProperty(newCur)) {
+		if (newCur >= 0 && newCur < envStorage.boards.length) {
 			envStorage.currentBoard = newCur;
 			this.setState({currentBoard: newCur});
 			if (!external) db.ref("lastBoardId").set(newCur);
@@ -205,8 +197,10 @@ class MainBoard extends React.Component {
 	}
 
 	onDone(e) {
-		if (this.state.editCurrent) this.updateBoard(e);
-		else this.addBoard(e);
+		// if (this.state.editCurrent) this.updateBoard(e);
+		var l = envStorage.boards.length;
+		db.ref("boards").push(JSON.stringify(e));
+		db.ref("lastBoardId").set(l);
 		this.setState({editing:false});
 	}
 	
