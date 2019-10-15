@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/accessibleRemoteBoard/precache-manifest.7364185a3755d3c4b122d7db5d6ec9d7.js"
+  "/accessibleRemoteBoard/precache-manifest.f418f2e063e4feddc2f4e0e8e531ae95.js"
 );
 
 self.addEventListener('message', (event) => {
