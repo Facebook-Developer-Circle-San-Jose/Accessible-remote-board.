@@ -224,12 +224,30 @@ class MainBoard extends React.Component {
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {user: null}
-		
+		this.state = {user: null, showLogin: true}
+	}
+
+	componentDidMount() {
+		firebase.auth().onAuthStateChanged(user => {
+			this.setState({ user });
+			console.log(user);
+		});
+	}
+
+	handleSignIn() {
+		const provider = new firebase.auth.GoogleAuthProvider();
+		firebase.auth().signInWithPopup(provider);
+	}
+
+	handleLogOut() {
+		firebase.auth().signOut();
 	}
 
 	render () {
 		return (<div className="App">
+			{ !this.state.user && this.state.showLogin? (<><button onClick={this.handleSignIn.bind(this)}>Sign in</button>
+			<button onClick={() => this.setState({showLogin: false})}>dismis</button></>
+			) : this.state.showLogin && (<button onClick={this.handleLogOut.bind(this)}>Logout</button>)}
 			<MainBoard/>
 		</div>);
 	}
