@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/accessibleRemoteBoard/static/css/main.3e95ebd8.chunk.css",
-    "main.js": "/accessibleRemoteBoard/static/js/main.e1e31d41.chunk.js",
-    "main.js.map": "/accessibleRemoteBoard/static/js/main.e1e31d41.chunk.js.map",
+    "main.css": "/accessibleRemoteBoard/static/css/main.9e616118.chunk.css",
+    "main.js": "/accessibleRemoteBoard/static/js/main.4ea04a2b.chunk.js",
+    "main.js.map": "/accessibleRemoteBoard/static/js/main.4ea04a2b.chunk.js.map",
     "runtime-main.js": "/accessibleRemoteBoard/static/js/runtime-main.f143ce68.js",
     "runtime-main.js.map": "/accessibleRemoteBoard/static/js/runtime-main.f143ce68.js.map",
-    "static/js/2.47e8a19b.chunk.js": "/accessibleRemoteBoard/static/js/2.47e8a19b.chunk.js",
-    "static/js/2.47e8a19b.chunk.js.map": "/accessibleRemoteBoard/static/js/2.47e8a19b.chunk.js.map",
+    "static/js/2.603fabbe.chunk.js": "/accessibleRemoteBoard/static/js/2.603fabbe.chunk.js",
+    "static/js/2.603fabbe.chunk.js.map": "/accessibleRemoteBoard/static/js/2.603fabbe.chunk.js.map",
     "index.html": "/accessibleRemoteBoard/index.html",
-    "precache-manifest.f418f2e063e4feddc2f4e0e8e531ae95.js": "/accessibleRemoteBoard/precache-manifest.f418f2e063e4feddc2f4e0e8e531ae95.js",
+    "precache-manifest.7b6938caa7b9dd0a8d9be2810c3294f0.js": "/accessibleRemoteBoard/precache-manifest.7b6938caa7b9dd0a8d9be2810c3294f0.js",
     "service-worker.js": "/accessibleRemoteBoard/service-worker.js",
-    "static/css/main.3e95ebd8.chunk.css.map": "/accessibleRemoteBoard/static/css/main.3e95ebd8.chunk.css.map",
+    "static/css/main.9e616118.chunk.css.map": "/accessibleRemoteBoard/static/css/main.9e616118.chunk.css.map",
+    "static/media/chatnotif.mp3": "/accessibleRemoteBoard/static/media/chatnotif.82bb2a7e.mp3",
     "static/media/logo.svg": "/accessibleRemoteBoard/static/media/logo.25bf045c.svg"
   }
 }
