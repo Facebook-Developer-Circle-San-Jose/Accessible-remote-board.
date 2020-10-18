@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/accessibleRemoteBoard/static/css/main.9e616118.chunk.css",
-    "main.js": "/accessibleRemoteBoard/static/js/main.4ea04a2b.chunk.js",
-    "main.js.map": "/accessibleRemoteBoard/static/js/main.4ea04a2b.chunk.js.map",
+    "main.js": "/accessibleRemoteBoard/static/js/main.75bef3d7.chunk.js",
+    "main.js.map": "/accessibleRemoteBoard/static/js/main.75bef3d7.chunk.js.map",
     "runtime-main.js": "/accessibleRemoteBoard/static/js/runtime-main.f143ce68.js",
     "runtime-main.js.map": "/accessibleRemoteBoard/static/js/runtime-main.f143ce68.js.map",
     "static/js/2.603fabbe.chunk.js": "/accessibleRemoteBoard/static/js/2.603fabbe.chunk.js",
     "static/js/2.603fabbe.chunk.js.map": "/accessibleRemoteBoard/static/js/2.603fabbe.chunk.js.map",
     "index.html": "/accessibleRemoteBoard/index.html",
-    "precache-manifest.7b6938caa7b9dd0a8d9be2810c3294f0.js": "/accessibleRemoteBoard/precache-manifest.7b6938caa7b9dd0a8d9be2810c3294f0.js",
+    "precache-manifest.a13f30f055327e9f67c69028c9a8e143.js": "/accessibleRemoteBoard/precache-manifest.a13f30f055327e9f67c69028c9a8e143.js",
     "service-worker.js": "/accessibleRemoteBoard/service-worker.js",
     "static/css/main.9e616118.chunk.css.map": "/accessibleRemoteBoard/static/css/main.9e616118.chunk.css.map",
     "static/media/chatnotif.mp3": "/accessibleRemoteBoard/static/media/chatnotif.82bb2a7e.mp3",
